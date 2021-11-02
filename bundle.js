@@ -17,8 +17,13 @@
 
   // index.js
   var fetchGithubRepo2 = require_fetchGithubRepo();
-  document.write(fetchGithubRepo2("sinatra/sinatra", (repoData) => {
-    console.log(repoData);
-    document.write(JSON.stringify(repoData));
-  }));
+  var text = document.querySelector("#repoText");
+  var button = document.querySelector("#repoBtn");
+  button.addEventListener("click", () => {
+    let div = document.querySelector("#jsonData");
+    fetchGithubRepo2(text.value, (repoData) => {
+      console.log(repoData);
+      div.innerHTML = JSON.stringify(repoData);
+    });
+  });
 })();
