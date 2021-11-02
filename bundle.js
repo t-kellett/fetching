@@ -15,15 +15,33 @@
     }
   });
 
+  // addNewItem.js
+  var require_addNewItem = __commonJS({
+    "addNewItem.js"(exports, module) {
+      addNewItem = (content) => {
+        let newPost = document.createElement("div");
+        newPost.innerText = content;
+        document.write(newPost);
+      };
+      module.exports = addNewItem;
+    }
+  });
+
   // index.js
   var fetchGithubRepo2 = require_fetchGithubRepo();
+  var addNewItem2 = require_addNewItem();
   var text = document.querySelector("#repoText");
   var button = document.querySelector("#repoBtn");
+  var json = document.querySelector("#jsonData");
   button.addEventListener("click", () => {
-    let div = document.querySelector("#jsonData");
     fetchGithubRepo2(text.value, (repoData) => {
       console.log(repoData);
-      div.innerHTML = JSON.stringify(repoData);
+      json.innerHTML = "";
+      json.innerHTML += addNewItem2(repoData.owner.avatar_url);
+      json.innerHTML += addNewItem2(repoData.html_url);
+      json.innerHTML += addNewItem2(repoData.stargazers_count);
+      json.innerHTML += addNewItem2(repoData.forks);
+      json.innerHTML += addNewItem2(repoData.language);
     });
   });
 })();
