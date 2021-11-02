@@ -20,8 +20,8 @@
     "addNewItem.js"(exports, module) {
       addNewItem = (content) => {
         let newPost = document.createElement("div");
-        newPost.innerText = content;
-        document.write(newPost);
+        newPost.id = content;
+        document.body.appendChild(newPost);
       };
       module.exports = addNewItem;
     }
@@ -36,12 +36,18 @@
   button.addEventListener("click", () => {
     fetchGithubRepo2(text.value, (repoData) => {
       console.log(repoData);
-      json.innerHTML = "";
-      json.innerHTML += addNewItem2(repoData.owner.avatar_url);
-      json.innerHTML += addNewItem2(repoData.html_url);
-      json.innerHTML += addNewItem2(repoData.stargazers_count);
-      json.innerHTML += addNewItem2(repoData.forks);
-      json.innerHTML += addNewItem2(repoData.language);
+      document.querySelector("#name").innerHTML = repoData.name;
+      document.querySelector("#avatar_url").innerHTML = repoData.owner.avatar_url;
+      document.querySelector("#html_url").innerHTML = repoData.html_url;
+      document.querySelector("#stargazers_count").innerHTML = repoData.stargazers_count;
+      document.querySelector("#forks").innerHTML = repoData.forks;
+      document.querySelector("#language").innerHTML = repoData.language;
     });
   });
+  addNewItem2("name");
+  addNewItem2("avatar_url");
+  addNewItem2("html_url");
+  addNewItem2("stargazers_count");
+  addNewItem2("forks");
+  addNewItem2("language");
 })();

@@ -1,7 +1,8 @@
 addNewItem = (content) => {
   let newPost  = document.createElement('div');
-  newPost.innerText = content;
-  document.write(newPost);
+  // newPost.innerText = content;
+  newPost.id = content
+  document.body.appendChild(newPost);
 };
 
 module.exports = addNewItem;
